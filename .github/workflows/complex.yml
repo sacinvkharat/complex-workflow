@@ -1,17 +1,20 @@
-name: first
-
+name: complex
 on: push
-
 jobs:
-    job1:
-        name: First Job
-        runs-on: ubuntu-latest
-        steps:
-            - name: Step one
-            - name: Step two
-    job2:
-        name: Second Job
-        runs-on: windows-latest
-        steps:
-            - name: Step one
-            - name: Step two
+  ubuntu: ubuntu-latest
+    runs-on:
+    steps:
+      - run: date
+  windows: windows-latest
+    runs-on:
+    steps:
+      - run: date  
+  macos: macos-latest
+    runs-on:
+    steps:
+      - run: date  
+  depends:
+    needs: [ubuntu,windows,macos]
+    runs-on: macos-latest
+    steps:
+      - run: date   
